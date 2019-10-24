@@ -1,4 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+const App = () => {
+  return (
+    <div>
+      <Hoge />
+      <Hoge />
+      <Hoge />
+    </div>
+  )
+}
+
+const Hoge = () => {
+  return (
+    <div>hoge!</div>
+  )
+}
+export default App;
+
 
 // function App() {
 //   return (
@@ -6,15 +24,14 @@ import React, { Component } from 'react';
 //   );
 // }
 
-class App extends Component {
-  render(){
-    return(
-    <React.Fragment>
-      <label htmlFor="bar">bar</label>
-      <input type="text" onChange={() => {console.log("メッセージだよーん")}}/>
-    </React.Fragment>
-    );
-  }
-}
+// class App extends Component {
+//   render(){
+//     return(
+//     <React.Fragment>
+//       <label htmlFor="bar">bar</label>
+//       <input type="text" onChange={() => {console.log("メッセージだよーん")}}/>
+//     </React.Fragment>
+//     );
+//   }
+// }
 
-export default App;
