@@ -8,10 +8,11 @@ import React, { Component } from 'react';
 
 class App extends Component {
   render(){
-    return React.createElement(
-      "h1",
-      null,
-      "hello, Word!"
+    return(
+    <React.Fragment>
+      <label htmlFor="bar">bar</label>
+      <input type="text" onChange={() => {console.log("メッセージだよーん")}}/>
+    </React.Fragment>
     );
   }
 }
