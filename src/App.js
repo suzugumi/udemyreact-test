@@ -1,56 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-const App = () => {
-  const profiles = [
-    {name:"うんちまん", age:5},
-    {name:"うんちまん", age:12},
-    {name:"のりちゃん", age:25}
-  ]
-  return (
-  <div>
-    {
-      profiles.map((profle,index)=> {
-        return <User name={profle.name} age={profle.age} key={index} />
-      })
+const App = () => (<Counter></Counter>)
+
+class Counter extends Component {
+  constructor(props){
+    super(props)
+    this.state = { count: 0}
+  }
+
+  handlePlusButton = () => {
+    console.log("handlePlusButton");
+    this.setState({ count: this.state.count + 1})
+  }
+
+  handlemainButton = () => {
+    this.setState({ count: this.state.count -1 })
+
+    console.log("handlemainButton");
+    if(0 >= this.state.count){
+      console.log('うんち')
+      this.setState({ count:  0 })
+
     }
-  </div>
+
+  }
+
+  render(){
+  return ( 
+  <React.Fragment>
+  <div>count: { this.state.count }</div>
+  <button onClick={ this.handlePlusButton}>+1</button>
+  <button onClick={ this.handlemainButton}>-1</button>
+  </React.Fragment>
   )
-}
-
-const User = (props) => {
-  return (
-    <p>わたしの名前は{props.name}です！{props.age}才です</p>
-  );
-}
-
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired
+  }
 }
 
 
 export default App;
-
-// User.defaultProps = {
-//   age: 0
-// }
-
-
-// function App() {
-//   return (
-//     <div><h1>hoge</h1></div>
-//   );
-// }
-
-// class App extends Component {
-//   render(){
-//     return(
-//     <React.Fragment>
-//       <label htmlFor="bar">bar</label>
-//       <input type="text" onChange={() => {console.log("メッセージだよーん")}}/>
-//     </React.Fragment>
-//     );
-//   }
-// }
 
