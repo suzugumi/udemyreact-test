@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form'
 import { span } from 'child_process';
-import { postEvent } from '../actions';
+import { getEvent, deleteEvent, putEvent } from '../actions'
 
 
-class EventsNew extends Component {
+class EventsShow extends Component {
   constructor(props) {
+    console.log('event_show')
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
+    this.onDeleteClick = this.onDeleteClick.bind(this)
   }
   renderField(field) {
     const { input, label, type, meta: { touched, error } } = field
@@ -22,8 +24,15 @@ class EventsNew extends Component {
     )
   }
 
+  async onDeleteClick(){
+    const { id } =this.props.match.params
+    await this.props.deleteEvent(id)
+    this.props.history.push('/')
+    console.log(id)
+  }
+
   async onSubmit(values){
-    await this.props.postEvent(values)
+   // await this.props.postEvent(values)
     this.props.history.push('/')
   }
 
@@ -36,6 +45,7 @@ class EventsNew extends Component {
         <div>
           <input type="submit" value="Submit" disabled={pristine} />
           <Link to="/">Cancel</Link>
+          <Link to="/" onClick={this.onDeleteClick}>Delete</Link>
         </div>
       </form>
    )
@@ -54,8 +64,8 @@ const errors = {}
 // const mapStateToProps = state => ({ events: state.events })
 
 
-const mapDispatchToProps = ({ postEvent })
+const mapDispatchToProps = ({ deleteEvent })
 
 export default connect(null, mapDispatchToProps)(
-  reduxForm({ validate, form: 'eventNewForm'})(EventsNew)
+  reduxForm({ validate, form: 'eventShowForm'})(EventsShow)
   )
