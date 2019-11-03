@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form'
 import { span } from 'child_process';
 import { getEvent, deleteEvent, putEvent } from '../actions'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 
 
 class EventsShow extends Component {
